@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+     $(function() {
+
+            //定义一个函数来设置cookie,同时设置cookie的有效时间
+             function setCookie(key,value,t){
+                  var oDate = new Date();
+                  oDate.setDate(oDate.getDate()+t);
+                  //使用escape()对内容进行编码
+                  document.cookie = key+'='+escape(value)+';expires='+oDate.toGMTString();
+             }
+             setCookie('_seeyon','_seeyon',5);
+
+            $('#btnget').on('click',function() {
+                $.ajax({
+                　　　　url: 'http://127.0.0.1:8180/parameter/cookie',
+                　　　　type: 'post',
+                　　　　data: '',
+                      headers: {
+                        'Cookie': '_seeyon=_seeyon'
+                      },
+                　　　　//  默认情况下，标准的跨域请求是不会发送cookie的
+                　　　　beforeSend: function (xhr) {
+                　　　　　　xhr.withCredentials = true
+                　　　　},
+                      crossDomain:true,
+                　　　　success: function(rs){
+                         alert(rs);
+                       }
+                　　});
+            })
+        });
+
+</script>
+<body>
+<!--创建前端进行测试-->
+<a href="http://127.0.0.1:8180/parameter/pathValue/001/小花">路径变量</a>
+</br>
+<a href="http://127.0.0.1:8180/parameter/heand">获取请求头</a>
+</br>
+<a href="http://127.0.0.1:8180/parameter/param?id=001&name=小花">获取请求参数</a>
+</br>
+<a href="http://127.0.0.1:8180/parameter/cookie">获取cookie值</a>
+</br>
+<!--获取请求体-->
+<form action="http://127.0.0.1:8180/parameter/body"  method="post">
+    账号:<input type="text" name="user">
+    密码:<input type="password" name="pwd">
+    <input type="submit" value="登入">
+</form>
+</br>
+<a href="http://127.0.0.1:8180/parameter/forWard">获取request域属性</a>
+</br>
+
+</body>
+</html>
