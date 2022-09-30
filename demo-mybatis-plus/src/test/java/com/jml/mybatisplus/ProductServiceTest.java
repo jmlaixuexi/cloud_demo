@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -39,6 +41,14 @@ public class ProductServiceTest {
         System.out.println(num);
     }
 
+    @Test
+    public void testBatchSaveProduct(){
+        int num = 0;
+        while (num < 100) {
+            testSaveProduct2();
+            num++;
+        }
+    }
     @Test
     public void testSaveProduct2(){
         Random r=new Random();
@@ -121,4 +131,81 @@ public class ProductServiceTest {
     }
 
 
+    @Test
+    public void testGetProductPageByLimitList() {
+        List<Product> list = new ArrayList<>();
+
+        int num = 1;
+        while (num < 10) {
+
+            list = productService.getProductPageByLimitList(num, 20);
+
+            if(!CollectionUtils.isEmpty(list) && list.size()==20){
+                num++;
+            }else {
+                num = 11;
+            }
+
+            System.out.println(list);
+        }
+    }
+
+
+    @Test
+    public void testGetProductPageByRowBoundsList() {
+        List<Product> list = new ArrayList<>();
+
+        int num = 1;
+        while (num < 10) {
+
+            list = productService.getProductPageByRowBoundsList(num, 20);
+
+            if(!CollectionUtils.isEmpty(list) && list.size()==20){
+                num++;
+            }else {
+                num = 11;
+            }
+
+            System.out.println(list);
+        }
+    }
+
+
+    @Test
+    public void testGetProductPageByPageHelperList() {
+        List<Product> list = new ArrayList<>();
+
+        int num = 1;
+        while (num < 10) {
+
+            list = productService.getProductPageByPageHelperList(num, 20);
+
+            if(!CollectionUtils.isEmpty(list) && list.size()==20){
+                num++;
+            }else {
+                num = 11;
+            }
+
+            System.out.println(list);
+        }
+    }
+
+    @Test
+    public void testGetProductPageByMyBatisPlusList() {
+        List<Product> list = new ArrayList<>();
+
+        int num = 1;
+        while (num < 10) {
+
+            list = productService.getProductPageByMyBatisPlusList(num, 20);
+
+            if(!CollectionUtils.isEmpty(list) &&list.size()==20){
+                num++;
+            }else {
+                num = 11;
+            }
+
+            System.out.println(list);
+        }
+    }
 }
