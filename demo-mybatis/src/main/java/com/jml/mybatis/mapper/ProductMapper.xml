@@ -84,4 +84,19 @@
       total_amount = #{totalAmount,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="getProductPageByLimitList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_tb limit #{pageNow},#{pageSize}
+  </select>
+  <select id="getProductPageByRowBoundsList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_tb
+  </select>
+  <select id="getProductPageByPageHelperList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_tb
+  </select>
 </mapper>
