@@ -1,11 +1,11 @@
-package com.jml.web;
+package com.jml.param;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class ParamApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class,args);
+        SpringApplication.run(ParamApplication.class,args);
     }
 }
