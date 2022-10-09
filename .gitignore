@@ -1,8 +1,7 @@
 /demo-param/target
 /demo-mybatis-plus/target
 /demo-mybatis/target
-/demo-order-sharding/target
-/demo-order-sharding-db/target
-/demo-order-sharding-db-sharding/target
-/demo-order-sharding-db-slave/target
+/demo-order-sharding/demo-order-sharding-db/target
+/demo-order-sharding/demo-order-sharding-db-sharding/target
+/demo-order-sharding/demo-order-sharding-db-slave/target
 .idea
