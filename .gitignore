@@ -4,4 +4,6 @@
 /demo-order-sharding/demo-order-sharding-db/target
 /demo-order-sharding/demo-order-sharding-db-sharding/target
 /demo-order-sharding/demo-order-sharding-db-slave/target
+/demo-logs/demo-jul/target
+/demo-logs/demo-jul/logs
 .idea
