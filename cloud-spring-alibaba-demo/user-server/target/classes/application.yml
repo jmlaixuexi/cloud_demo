@@ -1,0 +1,15 @@
+server:
+  port: 8181
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud-user?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+mybatis:
+  mapper-locations: classpath:com/jml/user/mapper/*.xml
+logging:
+  level:
+    com.jml.user: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS

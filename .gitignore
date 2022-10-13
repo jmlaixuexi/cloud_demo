@@ -6,4 +6,8 @@
 /demo-order-sharding/demo-order-sharding-db-slave/target
 /demo-logs/demo-jul/target
 /demo-logs/demo-jul/logs
+/cloud-spring-alibaba-demo/order-server/target
+/cloud-spring-alibaba-demo/order-server/target
+/cloud-spring-demo/order-server-eureka/target
+/cloud-spring-demo/user-server-eureka/target
 .idea
