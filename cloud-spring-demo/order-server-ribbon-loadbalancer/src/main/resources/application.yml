@@ -10,17 +10,22 @@ spring:
     password: root
 mybatis:
   mapper-locations: classpath:com/jml/order/mapper/*.xml
+logging:
+  level:
+    com.jml.order: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
 eureka:
   instance:
     hostname: localhost
   client:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:18080/eureka/
-user-serve:
+user-server:
   ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #局部负载均衡配置
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule   #局部负载均衡配置
 ribbon:
   eager-load:
     enabled: true #开启饥饿加载
     clients:  #指定服务饥饿加载
-      - user-serve
+      - user-server

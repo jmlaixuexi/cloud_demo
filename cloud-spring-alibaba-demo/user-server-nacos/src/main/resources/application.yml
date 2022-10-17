@@ -1,0 +1,22 @@
+server:
+  port: 8181
+spring:
+  application:
+    name: user-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud-user?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+  cloud:
+    nacos:
+      server-addr: http://localhost:8848  #nacos服务地址
+      discovery:
+        cluster-name: HZ #集群名称
+mybatis:
+  mapper-locations: classpath:com/jml/user/mapper/*.xml
+logging:
+  level:
+    com.jml.user: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS

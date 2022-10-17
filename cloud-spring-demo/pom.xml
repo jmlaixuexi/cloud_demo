@@ -15,7 +15,7 @@
         <module>eureka-server</module>
         <module>user-server-eureka</module>
         <module>order-server-eureka</module>
-        <module>order-server-ribbon</module>
+        <module>order-server-ribbon-loadbalancer</module>
     </modules>
 
     <properties>

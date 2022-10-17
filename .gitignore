@@ -10,5 +10,7 @@
 /cloud-spring-alibaba-demo/order-server/target
 /cloud-spring-demo/order-server-eureka/target
 /cloud-spring-demo/user-server-eureka/target
-/cloud-spring-demo/order-server-ribbon/target
+/cloud-spring-demo/order-server-ribbon-loadbalancer/target
+/cloud-spring-alibaba-demo/order-server-nacos/target
+/cloud-spring-alibaba-demo/user-server-nacos/target
 .idea
