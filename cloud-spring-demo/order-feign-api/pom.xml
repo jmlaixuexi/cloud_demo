@@ -3,23 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>cloud_demo</artifactId>
+        <artifactId>cloud-spring-demo</artifactId>
         <groupId>com.jml</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-spring-demo</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>eureka-server</module>
-        <module>user-server-eureka</module>
-        <module>order-server-eureka</module>
-        <module>order-server-ribbon-loadbalancer</module>
-        <module>order-server-nacos-openfeign</module>
-        <module>order-feign-api</module>
-        <module>gateway</module>
-    </modules>
+    <artifactId>order-feign-api</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -27,4 +17,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <!--openfeign客户端依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 </project>

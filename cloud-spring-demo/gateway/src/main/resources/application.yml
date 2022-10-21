@@ -1,0 +1,14 @@
+server:
+  port: 8288
+spring:
+  profiles:
+    active: cors
+  application:
+    name: gateway-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848
+logging:
+  level:
+    com.jml.gateway: debug

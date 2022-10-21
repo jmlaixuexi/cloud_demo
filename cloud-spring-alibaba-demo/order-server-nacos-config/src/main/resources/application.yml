@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud-order?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+mybatis:
+  mapper-locations: classpath:com/jml/order/mapper/*.xml
+user-server:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule   #局部负载均衡配置  com.alibaba.cloud.nacos.ribbon.NacosRule
+ribbon:
+  eager-load:
+    enabled: true #开启饥饿加载
+    clients:  #指定服务饥饿加载
+      - user-server
+logging:
+  level:
+    com.jml.order: debug

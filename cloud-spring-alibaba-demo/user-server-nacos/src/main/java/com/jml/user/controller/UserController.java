@@ -2,14 +2,15 @@ package com.jml.user.controller;
 
 import com.jml.user.model.User;
 import com.jml.user.service.UserService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private UserService userService;
 
@@ -18,7 +19,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{id}",method = {RequestMethod.GET})
-    public User queryUserById(@PathVariable("id") long id){
+    public User queryUserById(@PathVariable("id") long id,@RequestHeader(value = "Token",required = false) String token){
+        logger.info("Toke："+ token);
         return userService.queryUserById(id);
     }
 }

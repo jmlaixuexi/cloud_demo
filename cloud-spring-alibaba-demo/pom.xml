@@ -16,6 +16,7 @@
         <module>user-server</module>
         <module>order-server-nacos</module>
         <module>user-server-nacos</module>
+        <module>order-server-nacos-config</module>
     </modules>
 
     <properties>

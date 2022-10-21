@@ -1,0 +1,9 @@
+# 基础镜像
+FROM java:8-alpine
+# 拷贝java项目包
+COPY app.jar /tmp/app.jar
+# 暴露端口 8080 --！！！容器内部端口
+EXPOSE 8080
+
+# 入口，jar文件的启动命令 # 这里app.jar就是我的jar文件
+ENTRYPOINT ['java','-jar','/tmp/app.jar']

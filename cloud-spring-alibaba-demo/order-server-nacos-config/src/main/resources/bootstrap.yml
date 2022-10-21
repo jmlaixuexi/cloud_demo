@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: st
+  application:
+    name: order-server
+  cloud:
+    bootstrap:
+      enabled: true
+    nacos:
+      config:
+        server-addr: http://localhost:8848
+        file-extension: yaml  #文件后缀名
+  config:
+    # 因为springboot 2.4版本以后默认关闭加载bootstrap.yml，所以只能通过此方式连接到nacos config
+    import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}

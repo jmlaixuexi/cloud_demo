@@ -13,4 +13,9 @@
 /cloud-spring-demo/order-server-ribbon-loadbalancer/target
 /cloud-spring-alibaba-demo/order-server-nacos/target
 /cloud-spring-alibaba-demo/user-server-nacos/target
+/cloud-spring-alibaba-demo/order-server-nacos-config/target
+/cloud-spring-demo/gateway/target
+/cloud-spring-demo/order-server-nacos-openfeign/target
+/cloud-spring-alibaba-demo/user-server/target
+/cloud-spring-demo/order-feign-api/target
 .idea

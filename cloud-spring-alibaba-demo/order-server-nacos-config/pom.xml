@@ -3,16 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>cloud-spring-demo</artifactId>
+        <artifactId>cloud-spring-alibaba-demo</artifactId>
         <groupId>com.jml</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>order-server-ribbon-loadbalancer</artifactId>
+    <artifactId>order-server-nacos-config</artifactId>
 
     <properties>
-        <ribbon.loadbalancer.version>2.3.0</ribbon.loadbalancer.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,10 +38,22 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
-        <!--eureka客户端-->
+        <!--nacos客户端
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        -->
+        <!--nacos配置管理依赖-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <!--
         由于 Netflix Ribbon 进入停更维护阶段，因此 SpringCloud 2020.0.1 版本之后 删除了eureka中的ribbon，
@@ -50,9 +61,40 @@
         此时我们需要引入 loadbalancer 代替，才能调用服务提供者提供的服务
         -->
         <dependency>
-            <groupId>com.netflix.ribbon</groupId>
-            <artifactId>ribbon-loadbalancer</artifactId>
-            <version>${ribbon.loadbalancer.version}</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+        <!--
+        在SpringCloud2020以后，配置bootstrap.yml都是无效的。
+        解决方案一: 重新启用bootstrap.yml（不推荐）
+        这种方式相当于将SpringBoot降回之前的使用方式，大概分为两步：
+        启用bootstrap.yml支持：spring.cloud.bootstrap.enabled=true
+        引入bootstrap组件的依赖（注意版本）：org.springframework.cloud:spring-cloud-starter-bootstrap
+
+        解决方案二：使用spring.config.import（推荐）
+        鉴于SpringBoot已经废除了bootstrap引入的方式，我们自然也需要知道新的配置引入怎么用，直接上配置好的application.yml。
+        其中的关键点在于spring.config.import，由于nacos(2.1.0)目前仍未对springboot 2.4+版本做对应优化，只能通过手动拼接dataId的方式去获取配置。
+        spring.config.import后如果加上了optional:，则表示允许连接不成功时继续启动项目，例如：
+        spring.config.import: optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
     </dependencies>
 
@@ -75,7 +117,6 @@
                 </includes>
             </resource>
         </resources>
-        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
